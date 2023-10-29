@@ -39,7 +39,7 @@ INSERT INTO Residential_Area VALUES (
 
 INSERT INTO Residential_Area VALUES (
     ---- Entities_Number ---
-    1,
+    2,
     
     ---- Building_Name ---
     'B',
@@ -66,7 +66,7 @@ INSERT INTO Residential_Area VALUES (
 
 INSERT INTO Residential_Area VALUES (
     ---- Entities_Number ---
-    1,
+    3,
     
     ---- Building_Name ---
     'C',
@@ -93,7 +93,7 @@ INSERT INTO Residential_Area VALUES (
 
 INSERT INTO Residential_Area VALUES (
     ---- Entities_Number ---
-    1,
+    4,
     
     ---- Building_Name ---
     'D',
@@ -120,7 +120,7 @@ INSERT INTO Residential_Area VALUES (
 
 INSERT INTO Residential_Area VALUES (
     ---- Entities_Number ---
-    1,
+    5,
     
     ---- Building_Name ---
     'E',
@@ -141,6 +141,143 @@ INSERT INTO Residential_Area VALUES (
         NULL,
         SDO_ELEM_INFO_ARRAY(1, 1003, 4), 
         SDO_ORDINATE_ARRAY(50,175, 50,225, 25,200)
+  )
+);
+
+
+
+
+
+
+
+------------ LINE ------------
+INSERT INTO Residential_Area VALUES (
+    
+    6,
+    
+    ---- Building_Name ---
+    'RA',
+    
+    ---- Building_Layers ---
+    0,  
+    
+    ---- Building_State ---
+    'Sold',  
+    
+    ---- Building_Attribute ---
+    'Road',
+    
+ 
+    SDO_GEOMETRY(  
+        2002,    
+        NULL,
+        NULL,
+        SDO_ELEM_INFO_ARRAY(1, 2, 1),
+        SDO_ORDINATE_ARRAY(0,375, 800, 375)
+  )
+);
+
+
+
+INSERT INTO Residential_Area VALUES (
+    
+    6,
+    
+    ---- Building_Name ---
+    'RB',
+    
+    ---- Building_Layers ---
+    0,  
+    
+    ---- Building_State ---
+    'Sold',  
+    
+    ---- Building_Attribute ---
+    'Road',
+    
+ 
+    SDO_GEOMETRY(  
+        2002,    
+        NULL,
+        NULL,
+        SDO_ELEM_INFO_ARRAY(1, 2, 1),
+        SDO_ORDINATE_ARRAY(0,275, 800, 275)
+  )
+);
+
+
+INSERT INTO Residential_Area VALUES (
+   
+    7,
+
+    'RC',
+    
+ 
+    0,  
+    
+
+    'Sold',  
+    
+
+    'Road',
+    
+   
+    SDO_GEOMETRY(  
+        2002,    
+        NULL,
+        NULL,
+        SDO_ELEM_INFO_ARRAY(1, 2, 1),
+        SDO_ORDINATE_ARRAY(0,-100, 800,-100, 800,800, 0,650, 0,-100)
+  )
+);
+
+INSERT INTO Residential_Area VALUES (
+   
+    7,
+
+    'RD',
+    
+ 
+    0,  
+    
+
+    'Sold',  
+    
+
+    'Road',
+    
+   
+    SDO_GEOMETRY(  
+        2002,    
+        NULL,
+        NULL,
+        SDO_ELEM_INFO_ARRAY(1, 2, 1),
+        SDO_ORDINATE_ARRAY(900,-100, 1800,-100, 1800,800, 900,800, 900,-100)
+  )
+);
+
+INSERT INTO Residential_Area VALUES (
+   
+    7,
+
+    'RE',
+    
+ 
+    0,  
+    
+
+    'Sold',  
+    
+
+    'Road',
+    
+   
+    SDO_GEOMETRY(  
+        2002,    
+        NULL,
+        NULL,
+        SDO_ELEM_INFO_ARRAY(1, 2, 1),
+        SDO_ORDINATE_ARRAY(0,-200, 1800,-200, 1800,-800, 0,-800, 0,-200)
   )
 );
 
