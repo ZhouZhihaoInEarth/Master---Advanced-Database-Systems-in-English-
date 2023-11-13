@@ -16,9 +16,10 @@ public class CreateWindow extends JFrame{
         JToolBar toolBar = new JToolBar("Toolbar");
 
         // Toolbar Button
-        toolBar.add(new JButton("Upload the ESRI Shapefile"));
-        toolBar.add(new JButton("Edit Record"));
-        toolBar.add(new JButton("Delete Record"));
+        toolBar.add(new JButton("Spatial Database: Upload the ESRI Shapefile"));
+
+        toolBar.add(new JButton("Spatial Database: Edit Record"));
+        toolBar.add(new JButton("Spatial Database: Delete Record"));
         toolBar.add(new JButton("View Record"));
         toolBar.add(new JButton("Search Record"));
         getContentPane().add(toolBar, BorderLayout.PAGE_START);
