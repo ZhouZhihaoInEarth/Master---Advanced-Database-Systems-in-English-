@@ -30,7 +30,7 @@ public class ShapefileViewer {
         Layer layer = new FeatureLayer(featureSource, style);
         map.addLayer(layer);
 
-       // Show map
+        // Show map
         JMapFrame.showMap(map);
     }
 }
