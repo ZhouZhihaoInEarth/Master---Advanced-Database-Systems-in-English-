@@ -1,12 +1,16 @@
+package SpatialDatabaseCURD;
+
+import ConfigSpatialDatabase.DatabaseConfigure;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DeleteSpatialEntities {
-    private final DatabaseConfig connect_database;
+    private final DatabaseConfigure connect_database;
 
-    public DeleteSpatialEntities(DatabaseConfig connect_database) {
+    public DeleteSpatialEntities(DatabaseConfigure connect_database) {
         this.connect_database = connect_database;
     }
 

@@ -1,14 +1,26 @@
+package SpatialDatabaseCURD;
+
+import ConfigSpatialDatabase.DatabaseConfigure;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UpdateSpatialEntity {
-    private final DatabaseConfig connect_database;
+    private final DatabaseConfigure connect_database;
 
-    public UpdateSpatialEntity(DatabaseConfig connect_database){
+    public UpdateSpatialEntity(DatabaseConfigure connect_database){
         this.connect_database = connect_database;
     }
+
+
+
+
+
+
+
+
 
     public void updateEntity(int entityNumber, String newName, int newLayers, String newState, String newAttribute, String newGeometry) {
         String sql = "UPDATE Residential_Area SET Building_Name = ?, Building_Layers = ?, Building_State = ?, Building_Attribute = ?, Geometry = SDO_GEOMETRY(?) WHERE Entities_Number = ?";

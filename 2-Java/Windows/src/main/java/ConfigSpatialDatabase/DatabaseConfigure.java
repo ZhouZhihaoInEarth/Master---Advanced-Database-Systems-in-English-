@@ -1,8 +1,11 @@
+package ConfigSpatialDatabase;
+
 import java.io.IOException;
 import java.util.Properties;
 import java.io.InputStream;
 
-public class DatabaseConfig {
+/* 读取和存储数据库连接的配置信息 */
+public class DatabaseConfigure {
     private String driver;
     private String url;
 
@@ -10,8 +13,8 @@ public class DatabaseConfig {
 
     private String password;
 
-    public  DatabaseConfig() {
-        try (InputStream input = DatabaseConfig.class.getClassLoader().getResourceAsStream("database.properties")) {
+    public DatabaseConfigure() {
+        try (InputStream input = DatabaseConfigure.class.getClassLoader().getResourceAsStream("database.properties")) {
             Properties properties = new Properties();
 
             if (input == null) {

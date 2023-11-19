@@ -1,9 +1,13 @@
+package SpatialDatabaseCURD;
+
+import ConfigSpatialDatabase.DatabaseConfigure;
+
 import java.sql.*;
 
 public class InsertSpatialEntities {
-    private final DatabaseConfig connect_database;
+    private final DatabaseConfigure connect_database;
 
-    public InsertSpatialEntities(DatabaseConfig connect_database) {
+    public InsertSpatialEntities(DatabaseConfigure connect_database) {
         this.connect_database = connect_database;
     }
 
