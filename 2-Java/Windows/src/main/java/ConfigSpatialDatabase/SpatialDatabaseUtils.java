@@ -47,4 +47,16 @@ public class SpatialDatabaseUtils {
             return null;
         }
     }
+
+    public static boolean isDatabaseConnected() {
+        try (Connection connection = getConnection()) {
+            return connection != null && !connection.isClosed();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 }
