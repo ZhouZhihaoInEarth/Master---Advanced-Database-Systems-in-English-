@@ -19,18 +19,32 @@ public class SpatialDatabaseUtils {
         return DriverManager.getConnection(databaseconfigure.getUrl(), databaseconfigure.getUsername(), databaseconfigure.getPassword());
     }
 
-    public static void closeConnection(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public static void closeConnection(AutoCloseable... resources) {
+        for (AutoCloseable resource : resources) {
+            if (resource != null) {
+                try {
+                    resource.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public static ResultSet executeQuery(Connection conn, String query) throws SQLException {
-        PreparedStatement pstmt = conn.prepareStatement(query);
-        return pstmt.executeQuery();
+    public static ResultSet executeQuery(Connection connection, String query) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(query);
+            rs = pstmt.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection(rs, pstmt, conn);
+            return null;
+        }
     }
 }

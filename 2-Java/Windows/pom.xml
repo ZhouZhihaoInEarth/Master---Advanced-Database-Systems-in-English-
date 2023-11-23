@@ -40,7 +40,20 @@
             <artifactId>gt-swing</artifactId>
             <version>31-SNAPSHOT</version>
         </dependency>
+
+
+
     </dependencies>
+
+
+
+
+
+
+
+
+
+
 
     <!-- GeoTools 仓库 -->
     <repositories>

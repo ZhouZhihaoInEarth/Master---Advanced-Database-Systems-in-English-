@@ -1,4 +1,4 @@
-package SpatialData;
+package SpatialDatabase.SpatialData;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,18 +8,19 @@ import java.util.List;
 
 import ConfigSpatialDatabase.SpatialDatabaseUtils;
 import oracle.spatial.geometry.JGeometry;
+import oracle.sql.STRUCT;
 
 public class SpatialDataReader {
 
-    public static List<SpatialEntities> ReadData(String sql) {
+    public static List<SpatialEntities> ReadData(String sql, Connection connection) {
         List<SpatialEntities> dataList = new ArrayList<>();
-        Connection connection = null;
+        Connection con = null;
 
         try {
-            connection = SpatialDatabaseUtils.getConnection();
+            con = SpatialDatabaseUtils.getConnection();
 
-            //执行查询
-            ResultSet resultSet = SpatialDatabaseUtils.executeQuery(connection, sql);
+            // 执行查询
+            ResultSet resultSet = SpatialDatabaseUtils.executeQuery(con, sql);
 
             while (resultSet.next()) {
                 int entitiesNumber = resultSet.getInt("Entities_Number");
@@ -27,27 +28,19 @@ public class SpatialDataReader {
                 int buildingLayers = resultSet.getInt("Building_Layers");
                 String buildingState = resultSet.getString("Building_State");
                 String buildingAttribute = resultSet.getString("Building_Attribute");
-                JGeometry geometry = JGeometry.load(resultSet.getBytes("Geometry"));
+
+                // 将 Oracle SQL STRUCT 转换为 JGeometry
+                STRUCT st = (STRUCT) resultSet.getObject("Geometry");
+                JGeometry geometry = JGeometry.load(st);
 
                 SpatialEntities data = new SpatialEntities(entitiesNumber, buildingName, buildingLayers, buildingState, buildingAttribute, geometry);
                 dataList.add(data);
             }
 
-
         } catch (SQLException e) {
             e.printStackTrace();
-
-
-        } catch (Exception e) {
-
-
-            throw new RuntimeException(e);
-
-
         } finally {
-
-
-            SpatialDatabaseUtils.closeConnection(connection);
+            SpatialDatabaseUtils.closeConnection();
         }
 
         return dataList;
