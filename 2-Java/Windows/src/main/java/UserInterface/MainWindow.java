@@ -1,20 +1,13 @@
 package UserInterface;
-
+import ConfigSpatialDatabase.DatabaseConfigure;
 import ConfigSpatialDatabase.SpatialDatabaseUtils;
+import SpatialDatabaseCURD.QuerySpatialData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.application.Application;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class MainWindow {
 
@@ -22,14 +15,23 @@ public class MainWindow {
     @FXML
     private Button button_connection_database;
     @FXML
+    private  Button view_table_button;
+    @FXML
     private Label database_status;
     @FXML
-    private ComboBox<String> spatialdatabase_combobox;
+    private QuerySpatialData query_spatial_data;
+    @FXML
+    private TextArea output_text_area;
+    public MainWindow(){
+        DatabaseConfigure databaseConfigure = new DatabaseConfigure();
+        this.query_spatial_data = new QuerySpatialData(databaseConfigure);
+    }
 
 
     // 显示数据库状态的Label事件
+    // 状态：已测试，没问题
     @FXML
-    public void update_Database_Status(boolean isConnected) {
+    public void updateDatabaseStatus(boolean isConnected) {
         Platform.runLater(() -> {
             if (isConnected) {
                 database_status.setText("Connected");
@@ -42,6 +44,7 @@ public class MainWindow {
     }
 
     // 弹窗警报类
+    // 状态：已测试，没问题
     private void showAlert(String title, String header, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -50,26 +53,38 @@ public class MainWindow {
         alert.showAndWait();
     }
 
-    // Button事件
+
+    // Button事件：查看数据库是否连接成功
+    // 状态：已测试，没问题
     @FXML
-    public void database_ButtonClick(ActionEvent actionEvent) {
-        // 连接成功的话，提示：Successful Connection
+    public void databaseButtonClick(ActionEvent actionEvent) {
+
 
         if (SpatialDatabaseUtils.isDatabaseConnected()){
 
-            update_Database_Status(true);
+            updateDatabaseStatus(true);
 
             showAlert("Connect to the Database", "Prompt Message", "Successful Connection!", Alert.AlertType.INFORMATION);
+
       } else {
         // 连接失败的话，提示：Connection Fail!
 
-            update_Database_Status(false);
+            updateDatabaseStatus(false);
 
             showAlert("Connect to the Database", "Prompt Message", "Connection Fail!", Alert.AlertType.INFORMATION);
       }
 
 }
 
+
+    // Button事件：查看空间数据库中的表
+    @FXML
+    public void view_Database_Table_ButtonClick(ActionEvent actionEvent){
+        String tableData = query_spatial_data.getAllTableDataFromDatabaseWithoutParameters();
+        output_text_area.setText(tableData);
+
+
+    }
 
 
 
