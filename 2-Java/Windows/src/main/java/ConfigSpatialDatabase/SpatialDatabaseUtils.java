@@ -1,6 +1,10 @@
 package ConfigSpatialDatabase;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 
 /*用于获取连接、执行查询以及关闭连接等数据库操作*/
 public class SpatialDatabaseUtils {
@@ -48,15 +52,48 @@ public class SpatialDatabaseUtils {
         }
     }
 
+
+    /**
+     * @ Description: Check whether the database is successfully connected
+     */
     public static boolean isDatabaseConnected() {
+
         try (Connection connection = getConnection()) {
+
             return connection != null && !connection.isClosed();
+
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            System.out.println("isDatabaseConnected error:" + e.getMessage());
+
             return false;
         }
     }
 
 
+    /**
+     * @ Description: Gets all the table names in the database.
+     */
+    public static List<String> getTableNames() {
+        List<String> tableNames = new ArrayList<>();
+
+        String query = "SELECT table_name FROM user_tables";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultset = preparedStatement.executeQuery()) {
+
+            while (resultset.next()) {
+                tableNames.add(resultset.getString("table_name"));
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("getTableNames error:" + e.getMessage());
+
+        }
+
+        return tableNames;
+    }
 
 }

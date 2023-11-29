@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.Properties;
 import java.io.InputStream;
 
-/* 读取和存储数据库连接的配置信息 */
+/**
+ *  @ Description: Loading relevant configuration information from the "database.properties" property file for the database connection.
+**/
+
 public class DatabaseConfigure {
     private String driver;
     private String url;
@@ -13,6 +16,9 @@ public class DatabaseConfigure {
 
     private String password;
 
+    /**
+     * @ Description: Loading relevant configuration information from the "database.properties" property file
+     */
     public DatabaseConfigure() {
         try (InputStream input = DatabaseConfigure.class.getClassLoader().getResourceAsStream("database.properties")) {
             Properties properties = new Properties();
@@ -21,7 +27,6 @@ public class DatabaseConfigure {
                 System.out.println("Can't fine the properties value");
                 return;
             }
-
 
             properties.load(input);
 
@@ -50,6 +55,7 @@ public class DatabaseConfigure {
     public String getPassword(){
         return password;
     }
+
 
     public void printDatabaseConfig() {
         System.out.println("Driver: " + getDriver());
