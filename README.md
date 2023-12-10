@@ -1,2 +1,3 @@
-# Master---Advanced-Database-Systems-in-English-
-Advanced Database Systems (in English) Program Code repository for Master's Degree at the Faculty of Information Technology, Brno University of Technology, Czech Republic.
+version https://git-lfs.github.com/spec/v1
+oid sha256:9cb75eb4b2b59a89bf63a97753024af4a0b41b49f86c611bb8d68b93b21ea903
+size 803
